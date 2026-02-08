@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      POSTGRES_DB: beanpost
+    ports:
+      - "5432:5432"
+    volumes:
+      - beanpost-data:/var/lib/postgresql/data
+      - ./beanpost/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+
+  fava:
+    image: yegle/fava:latest
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/data:ro
+    entrypoint: ["fava", "/data/sample.beancount", "--host", "0.0.0.0", "--port", "5000"]
+
+volumes:
+  beanpost-data:

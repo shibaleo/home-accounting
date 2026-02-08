@@ -1,3 +1,9 @@
+#development environment
+.claude
+.mcp.json
+nul
+sample.beancount
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
